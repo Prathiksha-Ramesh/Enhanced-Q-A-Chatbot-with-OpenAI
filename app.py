@@ -12,7 +12,7 @@ load_dotenv()
 #langsmith tracing:
 
 os.environ['LANGCHAIN_API_KEY']=os.getenv('LANGCHAIN_API_KEY')
-os.environ['OPENAI_API_KEY']=os.getenv('OPENAI_API_KEY')
+# os.environ['OPENAI_API_KEY']=os.getenv('OPENAI_API_KEY')
 os.environ['LANGCHAIN_TRACING_V2']='true'
 os.environ['LANGCHAIN_PROJECT']='Q&A Chatbot with OPENAI'
 
@@ -46,7 +46,7 @@ max_token=st.sidebar.slider('Max Tokens',min_value=50,max_value=300,value=150)
 #main interface for user input:
 st.write("go ahead and ask any question")
 user_input=st.text_input('You:')
-if user_input:
+if user_input and api_key:
     response=generate_response(user_input,api_key,llm,temperature,max_token)
     st.write(response)
 else:
